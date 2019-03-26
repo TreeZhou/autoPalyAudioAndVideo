@@ -79,10 +79,14 @@
 - ios和安卓都可以播放，但需要一次触发条件
 - 支持所有浏览器
 ```
-	 	function oneEvnet() {
-		  document.removeEventListener("click", oneEvnet, false);
-		  var audio = document.getElementById("video");
-		  audio.play();
-		}
-		document.addEventListener("click", oneEvnet, false);
+function oneEvnet() {
+document.removeEventListener("click", oneEvnet, false);
+var audio = document.getElementById("video");
+audio.play();
+}
+document.addEventListener("click", oneEvnet, false);
 ```
+
+总结：微信浏览器中安卓无法自动播放视频，除此以外，媒体文件可以在各大机型中实现自动播放
+
+[GitHub案例](https://github.com/TreeZhou/autoPalyAudioAndVideo "GitHub")
