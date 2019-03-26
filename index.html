@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>音乐视频自动播放</title>
+  </head>
+  <body>
+    <audio id="audio" src="./1.mp3" autoplay loop="loop"></audio>
+    <video
+      id="video"
+      style="object-fit: fill;"
+      x-webkit-airplay="true"
+      playsinline="true"
+      x5-video-player-type="h5"
+      x5-video-player-fullscreen="true"
+      width="100%"
+      preload="auto"
+      autoplay
+      src="./1.mp4"
+    ></video>
+  </body>
+  <script>
+    function autoPlay(id) {
+      var audio = document.getElementById(id);
+      if (window.WeixinJSBridge) {
+        WeixinJSBridge.invoke(
+          "getNetworkType",
+          {},
+          function(e) {
+            audio.play();
+          },
+          false
+        );
+      } else {
+        document.addEventListener(
+          "WeixinJSBridgeReady",
+          function() {
+            WeixinJSBridge.invoke("getNetworkType", {}, function(e) {
+              audio.play();
+            });
+          },
+          false
+        );
+      }
+      audio.play();
+
+      return false;
+    }
+    autoPlay("video");
+  </script>
+</html>
